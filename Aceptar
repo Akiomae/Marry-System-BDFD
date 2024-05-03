@@ -1,0 +1,33 @@
+Prefix: $onInteraction[acep]
+
+Codigo:
+
+$nomention
+$suppressErrors[]
+$removeButtons
+$if[$getUserVar[usuario;$authorID]==]
+$ephemeral
+Nadie te ha propuesto matrimonio, está propuesta es de otra persona.
+$else
+$if[$getUserVar[tuBS;$authorID]==true]
+$else
+$if[$getUserVar[usuario;$getUserVar[usuario;$authorID]]==$authorID]
+$var[BS;$getServerVar[bodas]|(<@$authorID> ❤️ <@$getUserVar[usuario;$authorID]>)]
+$title[Propuesta de matrimonio aceptada 💒💝]
+$description[### Felicidades! 🎉
+**$nickname[$authorID]** y **$nickname[$getUserVar[usuario;$authorID]]** Ahora están casados!!
+
+**Esto merece celebrar 🍾**]
+$footer[Puede besar a $nickname[$getUserVar[usuario;$authorID]]]
+$setUserVar[pendi;false;$authorID]
+$setUserVar[pendi;false;$getUserVar[usuario;$authorID]]
+$setUserVar[casado;true;$authorID]
+$setUserVar[casado;true;$getUserVar[usuario;$authorID]]
+$setUserVar[usuario2;$getUserVar[usuario;$authorID];$authorID]
+$setUserVar[usuario2;$authorID;$getUserVar[usuario;$authorID]]
+$setUserVar[tuBS;false;$getUserVar[usuario;$authorID]]
+$setServerVar[bodas;$var[BS]]
+$else
+$endif
+$endif
+$endif

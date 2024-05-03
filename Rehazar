@@ -1,0 +1,26 @@
+Prefix: $onInteraction[recha]
+
+Codigo:
+
+$nomention
+$suppressErrors[]
+$removeButtons
+$if[$getUserVar[usuario;$authorID]==]
+$ephemeral
+Nadie te ha propuesto matrimonio, está propuesta es de otra persona.
+$else
+$if[$getUserVar[tuBS;$authorID]==true]
+$else
+$if[$getUserVar[usuario;$getUserVar[usuario;$authorID]]==$authorID]
+$setUserVar[usuario;;$getUserVar[usuario;$authorID]]
+$title[Propuesta de matrimonio rechazada 💔]
+$description[Lamentablemente **$nickname[$authorID]** no ha aceptado la propuesta de matrimonio a **$nickname[$getUserVar[usuario;$authorID]]**]
+$footer[$nickname[$getUserVar[usuario;$authorID]], no te rindas la vida sigue]
+$setUserVar[pendi;false;$authorID]
+$setUserVar[pendi;false;$getUserVar[usuario;$authorID]]
+$setUserVar[usuario;;$authorID]
+$setUserVar[tuBS;false;$getUserVar[usuario;$authorID]]
+$else
+$endif
+$endif
+$endif

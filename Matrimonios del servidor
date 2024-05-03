@@ -1,0 +1,17 @@
+Prefix: !server-marrys
+
+Codigo:
+
+$nomention
+$suppressErrors[]
+$if[$getServerVar[bodas]==]
+$description[Aún no hay matrimonios en el servidor]
+$else
+$title[Matrimonios de $serverName[$guildID]]
+$description[
+$replaceText[$getServerVar[bodas];|;
+
+]
+]
+$endif
+$reply

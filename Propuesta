@@ -1,0 +1,43 @@
+Sintaxis = !marry @usuario (Mensaje)
+
+Codigo:
+
+$nomention
+$suppressErrors[]
+$onlyIf[$mentioned[1]!=;Mencione a un usuario a quien proponerle matrimonio]
+$if[$getUserVar[pendi;$authorID]==true]
+$title[Propuesta pendiente ⌛]
+$description[<@$getUserVar[usuario;$authorID]> Te ha proponido matrimonio.
+
+> Mensaje de propuesta:
+```
+$getUserVar[propuestaMS;$getUserVar[usuario;$authorID]]
+```]
+$addButton[no;acep;Aceptar a $nickname[$getUserVar[usuario;$authorID]];success]
+$addButton[no;recha;Rechazar a $nickname[$getUserVar[usuario;$authorID]];danger]
+$else
+$if[$getUserVar[casado;$authorID]==true]¡Hey! Tu estás casad@ con **$nickname[$getUserVar[usuario2;$authorID]]**, ¿que haces aquí?$else
+$if[$getUserVar[casado;$mentioned[1]]==true]No puedes proponer matrimonio a **$nickname[$mentioned[1]]**, ya que está casad@ con **$nickname[$getUserVar[usuario2;$mentioned[1]]]**, así que será mejor que busques a otr@$else
+
+$onlyIf[$noMentionMessage!=; Escribe un hermoso mensaje para tu compañer@, ojalá te acepte.]
+$title[Propuesta de matrimonio 💒💝]
+$description[<@$authorID> Esta proponiendo matrimonio a <@$mentioned[1]>.
+
+> Mensaje de propuesta:
+```
+$noMentionMessage
+```
+
+Esperemos que $nickname[$mentioned[1]] acepte estar junto con $nickname[$authorID] ❤️]
+$addButton[no;acep;Aceptar;success]
+$addButton[no;recha;Rechazar;danger]
+$setUserVar[propuestaMS;$noMentionMessage;$authorID]
+$setUserVar[pendi;true;$authorID]
+$setUserVar[pendi;true;$mentioned[1]]
+$setUserVar[usuario;$mentioned[1];$authorID]
+$setUserVar[usuario;$authorID;$mentioned[1]]
+$setUserVar[tuBS;true;$authorID]
+$endif
+$endif
+$endif
+$reply

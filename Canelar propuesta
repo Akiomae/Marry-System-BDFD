@@ -1,0 +1,17 @@
+Prefix: !cancelar-marry
+
+Codigo:
+
+$nomention
+$suppressErrors[]
+$if[$getUserVar[casado;$authorID]==true]
+Ya estás casad@ con $nickname[$getUserVar[usuario2;$authorID]], no puedes cancelar una propuesta inexistente.
+$else
+$setUserVar[usuario;;$getUserVar[usuario;$authorID]]
+$title[propuesta de Matrimonio Cancelado ❌]
+$description[**$nickname[$authorID]** haz cancelado tu matrimonio con **$nickname[$getUserVar[usuario;$authorID]]** exitosamente.]
+$setUserVar[pendi;false;$authorID]
+$setUserVar[pendi;false;$getUserVar[usuario;$authorID]]
+$setUserVar[usuario;;$authorID]
+$setUserVar[tuBS;false;$authorID]
+$endif
